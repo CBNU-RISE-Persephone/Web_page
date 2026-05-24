@@ -1,13 +1,14 @@
 import {Link} from 'react-router-dom';
+import '../styles/Navbar.scss';
 
 function Navbar(){
     return (
         <nav>
             <div>
-                <Link to="/">DEMETER</Link>
+                <Link to="/" className="mainLogo">DEMETER</Link>
             </div>
 
-            <ul>
+            <ul className="navList">
                 <li>
                     <Link to="/teams">Teams</Link>
                 </li>

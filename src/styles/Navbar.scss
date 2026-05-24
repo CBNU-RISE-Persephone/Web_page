@@ -1,0 +1,42 @@
+$navbar-font-color: #1c4312; // 기본 nabvar 색상
+$list-font-size: 10px;
+
+nav{
+    background-color: white;
+    color: $navbar-font-color;
+
+    padding-top: 25px;
+    padding-left: 65px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .mainLogo{
+        color: $navbar-font-color;
+        font-family: 'Italiana';
+        font-size: 40px;
+        font-weight: 400;
+        text-decoration: none; // 밑줄 삭제
+    }
+
+    .navList{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        padding-right: 90px;
+        
+        a{
+            /* 일단 navbar list에 항목들은 기본 색상값으로 적용시킵니다.
+                list 항목에서 선택되어 밝은 폰트로 표시되는 것은 각 페이지 CSS에서 적용 */
+            color: $navbar-font-color;
+            font-family: 'Abhaya Libre';
+            font-size: 20px;
+            font-weight: 400;
+            text-decoration: none; // 밑줄 삭제
+            margin-left : 30px;
+        }
+    }
+    
+}
