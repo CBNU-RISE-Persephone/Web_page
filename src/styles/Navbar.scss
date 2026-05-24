@@ -1,4 +1,5 @@
 $navbar-font-color: #1c4312; // 기본 nabvar 색상
+$selected-font-color: #7BCC66;
 $list-font-size: 10px;
 
 nav{
@@ -6,6 +7,7 @@ nav{
     color: $navbar-font-color;
 
     padding-top: 25px;
+    padding-bottom: 25px;
     padding-left: 65px;
 
     display: flex;
@@ -28,14 +30,18 @@ nav{
         padding-right: 90px;
         
         a{
-            /* 일단 navbar list에 항목들은 기본 색상값으로 적용시킵니다.
-                list 항목에서 선택되어 밝은 폰트로 표시되는 것은 각 페이지 CSS에서 적용 */
+            /* 일단 navbar list에 항목들은 기본 색상값으로 적용시킵니다. */
             color: $navbar-font-color;
             font-family: 'Abhaya Libre';
             font-size: 20px;
             font-weight: 400;
             text-decoration: none; // 밑줄 삭제
             margin-left : 30px;
+
+            &.active{
+                font-weight: 800;
+                color: $selected-font-color;
+            }
         }
     }
     

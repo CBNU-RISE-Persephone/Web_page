@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import '../styles/Navbar.scss';
 
 function Navbar(){
@@ -10,19 +10,19 @@ function Navbar(){
 
             <ul className="navList">
                 <li>
-                    <Link to="/teams">Teams</Link>
+                    <NavLink to="/teams">Teams</NavLink>
                 </li>
                 <li>
-                    <Link to="/about">About</Link>
+                    <NavLink to="/about">About</NavLink>
                 </li>
                 <li>
-                    <Link to="/faq">FAQ</Link>
+                    <NavLink to="/faq">FAQ</NavLink>
                 </li>
                 <li>
-                    <Link to="/data">Data</Link>
+                    <NavLink to="/data">Data</NavLink>
                 </li>
                 <li>
-                    <Link to="/contact">Contact Us</Link>
+                    <NavLink to="/contact">Contact Us</NavLink>
                 </li>
             </ul>
         </nav>
