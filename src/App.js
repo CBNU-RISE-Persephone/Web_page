@@ -6,7 +6,7 @@ import About from './Pages/About'
 import FAQ from './Pages/FAQ'
 import Data from './Pages/Data'
 import ContactUs from './Pages/ContactUs'
-import './styles/App.css';
+import './styles/App.scss';
 
 function App() {
   return (
