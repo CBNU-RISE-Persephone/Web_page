@@ -7,6 +7,7 @@ function FAQ(){
             <h3>FAQ</h3>
         </div>
 
+        내용은 여기에 추가
         </main>
     );
 }
