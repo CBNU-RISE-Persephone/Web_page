@@ -2,7 +2,8 @@ import '../styles/pages/Teams.scss'
 
 function Teams(){
     return(
-        <>
+        <main className='TeamsPage'>
+
         <div className="headBox">
             <div className="innerTextBox">
                 <h3>TEAMS</h3>
@@ -29,7 +30,8 @@ function Teams(){
                 </div>
             </div>
         </div>
-        </>
+
+        </main>
     );
 }
 

@@ -1,6 +1,13 @@
+import '../styles/pages/FAQ.scss'
+
 function FAQ(){
     return(
-        <p>FAQ ㄱㄱ</p>
+        <main className='FAQPage'>
+        <div className="headBox">
+            <h3>FAQ</h3>
+        </div>
+
+        </main>
     );
 }
 
