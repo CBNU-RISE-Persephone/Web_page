@@ -1,0 +1,95 @@
+$darkGreen: #1C4312;
+$headBox-color: #8DA188;
+
+.ContactUsPage{
+
+.headBox{
+    background-color: $headBox-color;
+    width: 100%;
+    height: 300px;
+    display: flex;
+
+    h3{
+        margin-top: auto;
+        margin-bottom: 0px;
+        padding-left: 20px;
+
+        font-family: 'Abhaya Libre';
+        color: $darkGreen;
+        font-size: 100px;
+        font-weight: 400;
+    }
+}
+
+.contentsField{
+    width: 100%;
+}
+
+.contactForm{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 80px;
+    margin-bottom: 0;
+    margin-right: auto;
+    margin-left: auto;
+
+    .topInputGroup{
+        display: flex;
+        justify-content: space-between;
+        gap: 80px;
+        margin-bottom: 25px;
+    }
+
+    .formField{
+        display: flex;
+        flex-direction: column;
+
+        label{
+        color: $darkGreen;
+        font-family: 'Abhaya Libre';
+        font-weight: 700;
+        font-size: 25px;
+
+        margin-bottom: 4px;
+        }
+
+        input, textarea{
+            border: 1px solid gray;
+            border-radius: 10px;
+            font-size: 14px;
+
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        input{
+            width: 260px;
+            height: 20px;
+        }
+
+        textarea{
+            width: 100%;
+            height: 95px;
+            resize: none;
+        }
+    }
+
+    .sendBtn{
+        width: 120px;
+        height: 30px;
+
+        border-radius: 15px;
+        background-color: $darkGreen;
+        color: white;
+
+        margin-top: 10px;
+        margin-left: auto;
+    }
+}
+
+
+}
