@@ -1,6 +1,7 @@
 .Home{
+    
 
-.img{
+.img-section{
     background-image: url(../../Assets/Images/huckle-autumn-1689369.jpg);
     
     color: #ffffff;
@@ -13,5 +14,149 @@
     background-position: center;
 }
 
+.video-section{
+    
+    background-color: rgb(59, 59, 59);
+    border: 2px solid rgb(99, 99, 99);
+    width:100%;
+    height: 320px;
+
+    display: flex;
+    align-items: center; 
+    padding-left: 40px;  
+    box-sizing: border-box;
+    video{
+        height: 80%;
+        width: auto;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .text-content{
+        margin-left:50px;
+        color:white;
+        margin: 0 0 10pz 0;
+        letter-spacing: 1px;
+
+        h2{
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        p{
+            color: #cccccc;    
+            margin: 0;
+        }
+    }
+}
+
+
+
+.introduce-section{
+    width: 100%;
+    padding: 100px 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+    box-sizing: border-box;
+
+    h2 {
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .sub-title {
+        color: #777;
+        margin-bottom: 60px;
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            flex: 1; 
+            max-width: 350px;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: translateY(-10px); 
+            }
+
+            .icon {
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+                color: #222;
+            }
+
+            p {
+                font-size: 1rem;
+                color: #666;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+
+.cta-section {
+    width: 100%;
+    padding: 90px 24px;
+    background-color: #6a7969; 
+    color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+
+    .cta-content {
+        max-width: 800px;
+        margin: 0 auto;
+
+        h2 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            margin-bottom: 40px;
+            opacity: 0.85;
+        }
+
+        .cta-btn {
+            background-color: #ffffff;
+            color: #2b3a2a; 
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 16px 36px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        
+            transition: transform 0.2s, background-color 0.2s;
+
+            &:hover {
+            transform: scale(1.05); 
+            background-color: #f1f5f9; 
+            }
+        }
+    }
+}
 
 }
