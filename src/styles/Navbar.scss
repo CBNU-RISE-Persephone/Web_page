@@ -9,10 +9,13 @@ nav{
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 65px;
+    padding-right: 90px;
 
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
+    .menuBtn{ display: none; }
 
     .mainLogo{
         color: $navbar-font-color;
@@ -27,10 +30,8 @@ nav{
         padding: 0;
         list-style: none;
         display: flex;
-        padding-right: 90px;
         
         a{
-            /* 일단 navbar list에 항목들은 기본 색상값으로 적용시킵니다. */
             color: $navbar-font-color;
             font-family: 'Abhaya Libre';
             font-size: 20px;
@@ -42,6 +43,82 @@ nav{
                 font-weight: 800;
                 color: $selected-font-color;
             }
+        }
+    }
+
+    // navbar 반응형은, 한 줄에 다 들어오지 않을 때 적용(햄버거 버튼)
+    @media(max-width: 800px){
+        align-items: center;
+        
+        flex-wrap: wrap;
+
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 24px;
+        padding-left: 24px;
+
+        .menuBtn{
+            width: 40px;
+            height: 40px;
+
+            display: block;
+            
+            background-color: white;
+            border: 0px;
+
+            /* 햄버거 버튼에 '≡'랑 '×'
+                (둘 다 특수문자 기호라 폰트로 적용됨. 더 좋은 대안 있으면 수정바람) */
+            color: $navbar-font-color;
+            font-size: 30px;
+        }
+        // 반응형으로 줄어들 때, 로고도 작아지는게 더 자연스러워서 변경
+        .mainLogo{ font-size: 34px; }
+
+        .navList{
+            display: flex;
+
+            width: 100%;
+            background-color: white;
+
+            flex-direction: column;
+
+            // padding-top: 20px;
+            // padding-bottom: 20px;
+            padding-left: 0;
+            padding-right: 0;
+
+            // 햄버거버튼 움직임 관련 설정
+            height: 0;
+            opacity: 0;
+            margin-top: 0px;
+
+            a{
+                display: block;
+                margin-left: 0;
+            
+                padding-top: 10px;
+                padding-bottom: 10px;
+            
+                font-size: 18px;
+            }
+        }
+
+        // 여기도 햄버거버튼 움직임 관련(조금 단순무식하게 구현했는데, 일단은 이게 최선)
+        .navList.open{
+            height: 200px;
+            opacity: 1;
+            margin-top: 16px;
+            // opacity는 짧게 하면, 열릴때 잔상이 빠르게 생겨서 부자연스러움
+            transition: height 0.35s ease, opacity 1.0s ease, margin-top 0.35s ease;
+        }
+
+        .navList.close{
+            height: 0px;
+            opacity: 0;
+            margin-top: 0px;
+            /* opacity를 설정해두니까 반응형으로 창이 작아질때도 잔상이 생겨서 일단 지움
+                fix?: 보다가 좋은 해결책이 있다면 해결 부탁. 근데 0s여도 자연스러워서 일단 둠 */
+            transition: height 0.35s ease, opacity 0s ease, margin-top 0.35s ease;
         }
     }
     
