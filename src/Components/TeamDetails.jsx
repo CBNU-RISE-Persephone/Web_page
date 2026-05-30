@@ -29,8 +29,19 @@ function TeamDetails({ name, onClose }){
             <div className='imgBox'>
                     <img src={imgTitle} alt='profileImg'></img>
             </div>
-            <p>{ profileName }</p>
-            <button className='closeBtn' onClick={onClose}>닫기</button>
+            <div className='elementBox'>
+                <h4>{ profileName }</h4>
+                <ul>
+                    <li>내용1</li>
+                    <li>내용2</li>
+                    <li>내용3</li>
+                </ul>
+
+                <div className='footBox'>
+                    <button className='githubBtn'>GitHub</button>
+                    <button className='closeBtn' onClick={onClose}>닫기</button>
+                </div>
+            </div>
         </div>
 
         </div>
