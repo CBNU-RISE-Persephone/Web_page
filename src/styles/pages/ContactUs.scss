@@ -37,7 +37,7 @@ margin-bottom: 50px;
 
     .topInputGroup{
         display: flex;
-        gap: 40px;
+        gap: 100px;
         margin-bottom: 25px;
     }
 
@@ -71,7 +71,7 @@ margin-bottom: 50px;
 
 
         input{
-            width: 100%;
+            width: 90%;
             height: 30px;
         }
 
@@ -97,5 +97,47 @@ margin-bottom: 50px;
     }
 }
 
+@media(max-width: 1024px){
+    border: 0px solid red;
+    form{border: 0px solid blue}
+
+    .contactForm{
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    
+        .topInputGroup{
+            border: 0px solid hotpink;
+
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-bottom: 40px;
+            gap: 25px;
+
+            .formField{
+                display: flex;
+                flex-direction: column;
+
+                min-width: 250px;
+                flex-basis: 300px;
+                flex-shrink: 1;
+                flex-grow: 0;
+
+                border: 0px solid green;
+
+                input{ width: 100%; }
+            }
+        }
+        .contentsField{
+            min-width: 250px;
+            max-width: 300px;
+
+            border: 0px solid green;
+        }
+    }
+    
+}
 
 }
