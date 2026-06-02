@@ -3,10 +3,12 @@ $headBox-color: #8DA188;
 
 .ContactUsPage{
 
+margin-bottom: 50px;
+
 .headBox{
     background-color: $headBox-color;
     width: 100%;
-    height: 300px;
+    height: 250px;
     display: flex;
 
     h3{
@@ -21,12 +23,10 @@ $headBox-color: #8DA188;
     }
 }
 
-.contentsField{
-    width: 100%;
-}
-
 .contactForm{
-    width: 80%;
+    width: 50%;
+    max-width: 900px;
+
     display: flex;
     flex-direction: column;
 
@@ -37,14 +37,14 @@ $headBox-color: #8DA188;
 
     .topInputGroup{
         display: flex;
-        justify-content: space-between;
-        gap: 80px;
+        gap: 100px;
         margin-bottom: 25px;
     }
 
     .formField{
         display: flex;
         flex-direction: column;
+        flex: 1;
 
         label{
         color: $darkGreen;
@@ -56,6 +56,8 @@ $headBox-color: #8DA188;
         }
 
         input, textarea{
+            box-sizing: border-box;
+
             border: 1px solid gray;
             border-radius: 10px;
             font-size: 14px;
@@ -66,9 +68,11 @@ $headBox-color: #8DA188;
             padding-right: 10px;
         }
 
+
+
         input{
-            width: 260px;
-            height: 20px;
+            width: 90%;
+            height: 30px;
         }
 
         textarea{
@@ -78,18 +82,62 @@ $headBox-color: #8DA188;
         }
     }
 
+    .contentsField{ width: 100%; }
+
     .sendBtn{
         width: 120px;
-        height: 30px;
+        height: 34px;
 
         border-radius: 15px;
         background-color: $darkGreen;
         color: white;
 
-        margin-top: 10px;
+        margin-top: 12px;
         margin-left: auto;
     }
 }
 
+@media(max-width: 1024px){
+    border: 0px solid red;
+    form{border: 0px solid blue}
+
+    .contactForm{
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    
+        .topInputGroup{
+            border: 0px solid hotpink;
+
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-bottom: 40px;
+            gap: 25px;
+
+            .formField{
+                display: flex;
+                flex-direction: column;
+
+                min-width: 250px;
+                flex-basis: 300px;
+                flex-shrink: 1;
+                flex-grow: 0;
+
+                border: 0px solid green;
+
+                input{ width: 100%; }
+            }
+        }
+        .contentsField{
+            min-width: 250px;
+            max-width: 300px;
+
+            border: 0px solid green;
+        }
+    }
+    
+}
 
 }
