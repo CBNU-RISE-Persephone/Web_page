@@ -1,4 +1,4 @@
-import '../styles/TeamDetails.scss'
+import '../styles/components/TeamDetails.scss'
 import songImg from '../Assets/Images/teamImg/song_tae_yang.jpg'
 import micImg from '../Assets/Images/teamImg/mickseogi.jpg'
 import kimImg from '../Assets/Images/teamImg/kim_ji_seong.jpg'

@@ -1,10 +1,10 @@
-import '../styles/pages/Teams.scss'
+import '../styles/components/Teams.scss'
 import songImg from '../Assets/Images/teamImg/song_tae_yang.jpg'
 import micImg from '../Assets/Images/teamImg/mickseogi.jpg'
 import kimImg from '../Assets/Images/teamImg/kim_ji_seong.jpg'
 
 import { useState } from 'react'
-import TeamDetails from '../Components/TeamDetails'
+import TeamDetails from './TeamDetails'
 
 function Teams(){
     const [selectedName, setSelectedName] = useState(null);
