@@ -3,6 +3,10 @@ $selected-font-color: #7BCC66;
 $list-font-size: 10px;
 
 nav{
+    position: sticky;
+    top: 0;
+    z-index: 2147483647; // 그냥 대빵 큰 숫자 ㅋㅋ
+
     background-color: white;
     color: $navbar-font-color;
 
