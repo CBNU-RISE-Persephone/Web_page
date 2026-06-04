@@ -1,52 +1,66 @@
-import '../styles/components/Teams.scss'
-import songImg from '../Assets/Images/teamImg/song_tae_yang.jpg'
-import micImg from '../Assets/Images/teamImg/mickseogi.jpg'
-import kimImg from '../Assets/Images/teamImg/kim_ji_seong.jpg'
+import '../styles/components/Teams.scss';
 
-import { useState } from 'react'
-import TeamDetails from './TeamDetails'
+import songImg from '../Assets/Images/teamImg/song_tae_yang.jpg';
+import micImg from '../Assets/Images/teamImg/mickseogi.jpg';
+import kimImg from '../Assets/Images/teamImg/kim_ji_seong.jpg';
 
-function Teams(){
-    const [selectedName, setSelectedName] = useState(null);
+function Teams() {
+    const teamMembers = [
+        {
+            id: 'song',
+            name: '송태양',
+            role: 'System / Web Developer',
+            image: songImg,
+            githubUrl: 'https://github.com/taeyang03'
+        },
+        {
+            id: 'mic',
+            name: '서민석',
+            role: 'Frontend Developer',
+            image: micImg,
+            githubUrl: 'https://github.com/mickseogi'
+        },
+        {
+            id: 'kim',
+            name: '김지성',
+            role: 'Backend Developer',
+            image: kimImg,
+            githubUrl: 'https://github.com/BoldFreak06'
+        }
+    ];
 
-    return(
-        <main className='TeamsPage'>
+    function openGithub(url) {
+        if (!url) return;
 
-        <div className="headBox">
-            <div className="innerTextBox">
-                <h3>TEAMS</h3>
-                <p>충북대학교 소프트웨어 학부생</p>
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    return (
+        <section className="TeamsSection">
+            <div className="teamsHeader">
+                <span>OUR TEAM</span>
+                <h2>함께 만드는 사람들</h2>
+                <p>각 팀원을 선택하면 GitHub 프로필로 이동합니다.</p>
             </div>
-        </div>
 
-        {/* Todo: 각 버튼들(infoCard) onclick 및 함수 구현해야함.
-            정보 띄우는 창은 별도 컴포넌트로 구현.
-            +) 매우매우매우 나쁜 디자인. 민석이의 손을 좀 봐야할 듯 */}
-        <div className='contentBox'>
-            <button className='infoCard' onClick={ () => setSelectedName('song')}>
-                <div className='imgBox'>
-                    <img src={songImg} alt='teamImg_01'></img>
-                </div>
-                <h3>송태양</h3>
-            </button>
+            <div className="profileList">
+                {teamMembers.map((member) => (
+                    <button
+                        className="profileItem"
+                        key={member.id}
+                        type="button"
+                        onClick={() => openGithub(member.githubUrl)}
+                    >
+                        <div className="profileCircle">
+                            <img src={member.image} alt={`${member.name} 프로필 이미지`} />
+                        </div>
 
-            <button className='infoCard' onClick={ () => setSelectedName('mic')}>
-                <div className='imgBox'>
-                    <img src={micImg} alt='teamImg_02'></img>
-                </div>
-                <h3>서민석</h3>
-            </button>
-
-            <button className='infoCard' onClick={ () => setSelectedName('kim')}>
-                <div className='imgBox'>
-                    <img src={kimImg} alt='teamImg_03'></img>
-                </div>
-                <h3>김지성</h3>
-            </button>
-        </div>
-
-        {selectedName && <TeamDetails name={selectedName} onClose={ () => setSelectedName(null)}></TeamDetails>}
-        </main>
+                        <h3>{member.name}</h3>
+                        <p>{member.role}</p>
+                    </button>
+                ))}
+            </div>
+        </section>
     );
 }
 
