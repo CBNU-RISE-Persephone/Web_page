@@ -2,11 +2,10 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Home from './Pages/Home'
-import Teams from './Pages/Teams'
+import Teams from './Components/Teams'
 import About from './Pages/About'
-import FAQ from './Pages/FAQ'
 import Data from './Pages/Data'
-import ContactUs from './Pages/ContactUs'
+import ContactUs from './Components/ContactUs'
 import './styles/App.scss';
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="/about" element={<About />} />
-        <Route path="/faq" element={<FAQ />} />
         <Route path="/data" element={<Data />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>

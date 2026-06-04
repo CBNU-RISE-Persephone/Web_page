@@ -1,6 +1,6 @@
 import {Link, NavLink} from 'react-router-dom';
 import { useState } from 'react';
-import '../styles/Navbar.scss';
+import '../styles/components/Navbar.scss';
 
 function Navbar(){
     // 햄버거 버튼 관련 useState
@@ -22,9 +22,6 @@ function Navbar(){
                 </li>
                 <li>
                     <NavLink to="/about" onClick={() => setIsOpen(false)}>About</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/faq" onClick={() => setIsOpen(false)}>FAQ</NavLink>
                 </li>
                 <li>
                     <NavLink to="/data" onClick={() => setIsOpen(false)}>Data</NavLink>
