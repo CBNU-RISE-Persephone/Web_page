@@ -1,10 +1,38 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react'; // 페이지 위치 기억(다른 페이지에서 home의 컴포넌트 위치로 올 떄)
 import '../styles/pages/Home.scss'
 import demeterVideo from '../Assets/Videos/DEMETER.mp4'
 
+import Teams from '../Components/Teams';
+import ContactUs from '../Components/ContactUs';
+
 function Home(){
+    // 페이지 위치 기억(다른 페이지에서 home의 컴포넌트 위치로 올 떄)
+    const location = useLocation();
+
+    useEffect(() => {
+        if(!location.state?.scrollTo) return;
+
+        const id = location.state.scrollTo;
+
+        setTimeout(() => {
+            const element = document.getElementById(id);
+            if(!element) return;
+
+            const navHeight = 100; // 대충 navbar 높이 추정해서 100으로 잡음. 추후 미세 조정 필요
+            const elementTop = element.getBoundingClientRect().top + window.scrollY;
+
+            window.scrollTo({
+                top: elementTop - navHeight, // 스크롤되는 위치는 해당 요소 Top에서 네비게이션 바 높이 뻄
+                behavior: 'smooth'
+            });
+        }, 100);
+    }, [location.state]);
+
     return(
         <main className='Home'>
+
+        <section id='intro'>
             <div className='img-section'>
                 <h1><b>PERSEPHONE</b></h1>
                 <p>WIFI Sensing 기술을 응용한 스마트팜</p>
@@ -55,6 +83,15 @@ function Home(){
                     </Link>
                 </div>
             </div>
+        </section>
+
+        <section id='teams'>
+            <Teams></Teams>
+        </section>
+
+        <section id='contact'>
+            <ContactUs></ContactUs>
+        </section>
         </main>
     );
 }
