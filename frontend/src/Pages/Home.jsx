@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import '../styles/pages/Home.scss'
 import demeterVideo from '../Assets/Videos/DEMETER.mp4'
 
+import Teams from '../Components/Teams';
+import ContactUs from '../Components/ContactUs';
+
 function Home(){
     return(
         <main className='Home'>
@@ -55,6 +58,14 @@ function Home(){
                     </Link>
                 </div>
             </div>
+
+            <section id='teams'>
+                <Teams></Teams>
+            </section>
+
+            <section id='contact'>
+                <ContactUs></ContactUs>
+            </section>
         </main>
     );
 }
