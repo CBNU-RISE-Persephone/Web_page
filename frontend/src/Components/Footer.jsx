@@ -8,7 +8,7 @@ function Footer(){
             <span className="footer-logo">DEMETER</span>
         
             <p className="copyright">
-                &copy; {new Date().getFullYear()} Company Name. All rights reserved.
+                &copy; {new Date().getFullYear()} DEMETER Team. Built for PERSEPHONE.
             </p>
 
             <a href="https://github.com/CBNU-RISE-Persephone/Web_page" 
