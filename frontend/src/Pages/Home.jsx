@@ -2,9 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import '../styles/pages/Home.scss';
 import demeterVideo from '../Assets/Videos/DEMETER.mp4';
+import thumbImg from '../Assets/Images/thumb.png';
 
 import Teams from '../Components/Teams';
 import ContactUs from '../Components/ContactUs';
+import WifiSensing from '../Components/WifiSensing';
 
 function Home() {
     const location = useLocation();
@@ -57,7 +59,7 @@ function Home() {
                     </div>
 
                     <div className="hero-video">
-                        <video src={demeterVideo} controls>
+                        <video src={demeterVideo} poster={thumbImg} controls>
                             비디오 오류.
                         </video>
                     </div>
@@ -103,6 +105,8 @@ function Home() {
                         </div>
                     </div>
                 </div>
+
+                <WifiSensing />
 
                 <div className="message-section">
                     <div className="message-content">
