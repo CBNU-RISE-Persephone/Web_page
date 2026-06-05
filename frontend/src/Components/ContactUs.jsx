@@ -1,33 +1,50 @@
-import '../styles/components/ContactUs.scss'
+import '../styles/components/ContactUs.scss';
 
-function ContactUs(){
-    return(
-        <main className='ContactUsPage'>
-
-        <div className="headBox">
-            <h3>Contact Us</h3>
-        </div>
-
-        <form className="contactForm">
-            <div className='topInputGroup'>
-                <div className='formField'>
-                    <label htmlFor='name'>Name</label>
-                    <input id='name' type='text' placeholder='Please enter your name'></input>
-                </div>
-                <div className='formField'>
-                    <label htmlFor='email'>E-mail</label>
-                    <input id='email' type='email' placeholder='Please enter email'></input>
-                </div>
-            </div>
-            <div className='formField contentsField'>
-                <label htmlFor='contents'>Contents</label>
-                <textarea id='contents' placeholder='Contents...'></textarea>
+function ContactUs() {
+    return (
+        <section className="ContactUs">
+            <div className="contact-header">
+                <p className="section-label">CONTACT</p>
+                <h2>문의하기</h2>
+                <p>
+                    프로젝트에 대한 문의사항이나 의견을 남겨주세요.
+                </p>
             </div>
 
-            <button type='submit' className='sendBtn'>Send</button>
-        </form>
+            <form className="contact-form">
+                <div className="input-row">
+                    <div className="form-field">
+                        <label htmlFor="name">Name</label>
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="Please enter your name"
+                        />
+                    </div>
 
-        </main>
+                    <div className="form-field">
+                        <label htmlFor="email">E-mail</label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="Please enter email"
+                        />
+                    </div>
+                </div>
+
+                <div className="form-field">
+                    <label htmlFor="contents">Contents</label>
+                    <textarea
+                        id="contents"
+                        placeholder="Contents..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" className="send-btn">
+                    Send
+                </button>
+            </form>
+        </section>
     );
 }
 
