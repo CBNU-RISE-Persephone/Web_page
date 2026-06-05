@@ -1,97 +1,133 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react'; // 페이지 위치 기억(다른 페이지에서 home의 컴포넌트 위치로 올 떄)
-import '../styles/pages/Home.scss'
-import demeterVideo from '../Assets/Videos/DEMETER.mp4'
+import { useEffect } from 'react';
+import '../styles/pages/Home.scss';
+import demeterVideo from '../Assets/Videos/DEMETER.mp4';
 
 import Teams from '../Components/Teams';
 import ContactUs from '../Components/ContactUs';
 
-function Home(){
-    // 페이지 위치 기억(다른 페이지에서 home의 컴포넌트 위치로 올 떄)
+function Home() {
     const location = useLocation();
 
     useEffect(() => {
-        if(!location.state?.scrollTo) return;
+        if (!location.state?.scrollTo) return;
 
         const id = location.state.scrollTo;
 
         setTimeout(() => {
             const element = document.getElementById(id);
-            if(!element) return;
+            if (!element) return;
 
-            const navHeight = 100; // 대충 navbar 높이 추정해서 100으로 잡음. 추후 미세 조정 필요
+            const navHeight = 100;
             const elementTop = element.getBoundingClientRect().top + window.scrollY;
 
             window.scrollTo({
-                top: elementTop - navHeight, // 스크롤되는 위치는 해당 요소 Top에서 네비게이션 바 높이 뻄
+                top: elementTop - navHeight,
                 behavior: 'smooth'
             });
         }, 100);
     }, [location.state]);
 
-    return(
-        <main className='Home'>
+    return (
+        <main className="Home">
 
-        <section id='intro'>
-            <div className='img-section'>
-                <h1><b>PERSEPHONE</b></h1>
-                <p>WIFI Sensing 기술을 응용한 스마트팜</p>
-            </div>
+            <section id="intro">
+                <div className="img-section">
 
-            <div className='video-section'>
-                <video src={demeterVideo} controls>
-                    비디오 오류.
-                </video>
-                <div className='text-content'>
-                    <h2>DEMETER의 새로운 센서 기술</h2>
-                    <p>영상을 통해 확인하세요!</p>
-                </div>
-                
-            </div>
+                    <div className="hero-text">
+                        <p className="hero-label">WIFI SENSING SMART FARM</p>
 
-            <div className='introduce-section'>
-                <h2>Why PERSEPHONE?</h2>
-                <p className="sub-title">와이파이 센싱 기반 스마트팜의 핵심 강점</p>
-    
-                <div className='card-container'>
-                    <div className='card'>
-                        <div className='icon'>📡</div>
-                        <h3>WIFI Sensing</h3>
-                        <p>기존 센서의 한계를 뛰어넘는 비접촉식 감지 기술</p>
+                        <h1>PERSEPHONE</h1>
+
+                        <p>
+                            PERSEPHONE은 WiFi 신호가 재배 공간을 통과하며 발생하는
+                            CSI 데이터의 진폭, 위상, 부반송파 변화를 분석하여 토양 수분량과
+                            작물 생장 상태를 추정하는 비접촉 스마트팜 모니터링 프로젝트입니다.
+                        </p>
+
+                        <div className="hero-buttons">
+                            <Link to="/about">
+                                <button>프로젝트 소개</button>
+                            </Link>
+
+                            <Link to="/data">
+                                <button className="outline-btn">데이터 보기</button>
+                            </Link>
+                        </div>
                     </div>
-                    <div className='card'>
-                        <div className='icon'>🌱</div>
-                        <h3>Smart Automation</h3>
-                        <p>데이터 기반의 정밀하고 스마트한 농장 제어 시스템</p>
+
+                    <div className="hero-video">
+                        <video src={demeterVideo} controls>
+                            비디오 오류.
+                        </video>
                     </div>
-                    <div className='card'>
-                        <div className='icon'>📉</div>
-                        <h3>Cost Efficiency</h3>
-                        <p>설치 및 유지보수 비용의 혁신적인 절감 효과</p>
+
+                </div>
+
+                <div className="introduce-section">
+                    <p className="section-label">WHY PERSEPHONE?</p>
+
+                    <h2>와이파이 센싱 기반 스마트팜</h2>
+
+                    <p className="sub-title">
+                        페르세포네는 매립형 센서가 가진 국소 측정, 설치 비용, 유지관리 문제를
+                        WiFi CSI 기반의 비접촉·구역 중심 모니터링 방식으로 보완합니다.
+                    </p>
+
+                    <div className="card-container">
+                        <div className="card">
+                            <div className="number">01</div>
+                            <h3>WiFi Sensing</h3>
+                            <p>
+                                WiFi 신호가 토양과 작물 주변을 통과하며 발생하는 반사, 굴절,
+                                감쇠 변화를 분석하여 재배 공간의 상태 변화를 감지합니다.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <div className="number">02</div>
+                            <h3>CSI Data Analysis</h3>
+                            <p>
+                                CSI 데이터의 진폭, 위상, 부반송파별 변화량을 시계열 데이터로
+                                가공하고, 수분 변화와 생장 추이에 따른 패턴을 분석합니다.
+                            </p>
+                        </div>
+
+                        <div className="card">
+                            <div className="number">03</div>
+                            <h3>Cost Efficiency</h3>
+                            <p>
+                                재배 구역마다 센서를 매립하는 기존 방식의 부담을 줄이고,
+                                송수신 장치 기반의 구역형 모니터링으로 스마트팜 도입 비용을 낮춥니다.
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <div className="message-section">
+                    <div className="message-content">
+                        <p className="section-label">FROM POINT TO AREA</p>
 
-            <div className='cta-section'>
-                <div className='cta-content'>
-                    <h2>스마트한 농업의 미래, 지금 경험해보세요</h2>
-                    <p>PERSEPHONE의 혁신적인 와이파이 센싱 기술을 더 자세히 알아볼 수 있습니다.</p>
-                    
-                    <Link to="/about">
-                        <button className='cta-btn'>프로젝트 상세 정보 보기</button>
-                    </Link>
+                        <h2>센서를 꽂는 농업에서, 공간을 읽는 농업으로</h2>
+
+                        <p>
+                            페르세포네는 기존의 지점 중심 토양 수분 측정 방식을 넘어,
+                            WiFi 신호가 재배 공간을 통과하며 발생하는 CSI 변화를 분석합니다.
+                            이를 통해 작물과 토양의 상태를 비접촉 방식으로 파악하고,
+                            스마트팜의 구축 비용과 유지관리 부담을 줄이는 새로운 관측 방식을 제안합니다.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id='teams'>
-            <Teams></Teams>
-        </section>
+            <section id="teams">
+                <Teams />
+            </section>
 
-        <section id='contact'>
-            <ContactUs></ContactUs>
-        </section>
+            <section id="contact">
+                <ContactUs />
+            </section>
+
         </main>
     );
 }
