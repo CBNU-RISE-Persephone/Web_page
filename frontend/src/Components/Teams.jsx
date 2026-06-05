@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import '../styles/components/Teams.scss';
 
 import songImg from '../Assets/Images/teamImg/song_tae_yang.jpg';
@@ -5,29 +6,21 @@ import micImg from '../Assets/Images/teamImg/mickseogi.jpg';
 import kimImg from '../Assets/Images/teamImg/kim_ji_seong.jpg';
 
 function Teams() {
-    const teamMembers = [
-        {
-            id: 'song',
-            name: '송태양',
-            role: 'System / Web Developer',
-            image: songImg,
-            githubUrl: 'https://github.com/taeyang03'
-        },
-        {
-            id: 'mic',
-            name: '서민석',
-            role: 'Frontend Developer',
-            image: micImg,
-            githubUrl: 'https://github.com/mickseogi'
-        },
-        {
-            id: 'kim',
-            name: '김지성',
-            role: 'Backend Developer',
-            image: kimImg,
-            githubUrl: 'https://github.com/BoldFreak06'
-        }
-    ];
+    const [teamMembers, setTeamMembers] = useState([]);
+
+    const imageMap = {
+        'song_tae_yang.jpg': songImg,
+        'mickseogi.jpg': micImg,
+        'kim_ji_seong.jpg': kimImg
+    };
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/team-members')
+            .then((res) => res.json())
+            .then((data) => {
+                setTeamMembers(data);
+            });
+    }, []);
 
     function openGithub(url) {
         if (!url) return;
@@ -49,10 +42,13 @@ function Teams() {
                         className="profileItem"
                         key={member.id}
                         type="button"
-                        onClick={() => openGithub(member.githubUrl)}
+                        onClick={() => openGithub(member.github_url)}
                     >
                         <div className="profileCircle">
-                            <img src={member.image} alt={`${member.name} 프로필 이미지`} />
+                            <img
+                                src={imageMap[member.image]}
+                                alt={`${member.name} 프로필 이미지`}
+                            />
                         </div>
 
                         <h3>{member.name}</h3>
