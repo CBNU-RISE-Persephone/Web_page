@@ -131,6 +131,94 @@ $white: #ffffff;
             }
         }
     }
+
+    .teamIntro {
+        margin-top: 82px;
+        padding: 46px;
+        box-sizing: border-box;
+
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 52px;
+        align-items: center;
+
+        background:
+            linear-gradient(135deg, rgba(243, 247, 241, 0.95), rgba(255, 255, 255, 0.95));
+        border: 1px solid $lineColor;
+        border-radius: 34px;
+        box-shadow: 0 24px 70px rgba(31, 41, 51, 0.08);
+
+        .teamIntroText {
+            span {
+                display: inline-block;
+                margin-bottom: 16px;
+
+                color: $mainGreen;
+                font-size: 12px;
+                font-weight: 900;
+                letter-spacing: 1.8px;
+            }
+
+            h3 {
+                margin: 0;
+
+                color: $textBlack;
+                font-size: clamp(28px, 3vw, 40px);
+                font-weight: 850;
+                line-height: 1.32;
+                letter-spacing: -1.4px;
+                word-break: keep-all;
+            }
+
+            p {
+                margin: 22px 0 0;
+
+                color: $textGray;
+                font-size: 16px;
+                line-height: 1.85;
+                word-break: keep-all;
+            }
+
+            p + p {
+                margin-top: 14px;
+            }
+        }
+
+        .teamIntroCards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            div {
+                padding: 24px 26px;
+                box-sizing: border-box;
+
+                background-color: $white;
+                border: 1px solid rgba(28, 67, 18, 0.11);
+                border-radius: 22px;
+                box-shadow: 0 16px 40px rgba(31, 41, 51, 0.06);
+
+                strong {
+                    display: block;
+                    margin-bottom: 8px;
+
+                    color: $darkGreen;
+                    font-size: 17px;
+                    font-weight: 850;
+                    letter-spacing: -0.3px;
+                }
+
+                p {
+                    margin: 0;
+
+                    color: $textGray;
+                    font-size: 14.5px;
+                    line-height: 1.65;
+                    word-break: keep-all;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 900px) {
@@ -148,6 +236,13 @@ $white: #ffffff;
                 width: 170px;
                 height: 170px;
             }
+        }
+
+        .teamIntro {
+            grid-template-columns: 1fr;
+            gap: 34px;
+            margin-top: 70px;
+            padding: 38px;
         }
     }
 }
@@ -175,6 +270,28 @@ $white: #ffffff;
                 height: 160px;
             }
         }
+
+        .teamIntro {
+            margin-top: 58px;
+            padding: 30px 24px;
+            border-radius: 28px;
+
+            .teamIntroText {
+                h3 {
+                    font-size: 28px;
+                }
+
+                p {
+                    font-size: 15px;
+                }
+            }
+
+            .teamIntroCards {
+                div {
+                    padding: 22px;
+                }
+            }
+        }
     }
 }
 
@@ -198,6 +315,14 @@ $white: #ffffff;
 
             h3 {
                 font-size: 21px;
+            }
+        }
+
+        .teamIntro {
+            .teamIntroText {
+                h3 {
+                    font-size: 25px;
+                }
             }
         }
     }

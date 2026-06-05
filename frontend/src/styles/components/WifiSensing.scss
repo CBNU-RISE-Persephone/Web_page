@@ -1,0 +1,150 @@
+.WifiSensing {
+    width: 100%;
+    padding: 120px 0;
+    background-color: #4f5b7e;
+
+    .wifi-inner {
+        width: min(1180px, 86%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 78px;
+        align-items: center;
+    }
+
+    .section-label {
+        margin-bottom: 18px;
+        color: #e0e0e0;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .wifi-text {
+        h2 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 42px;
+            line-height: 1.35;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            word-break: keep-all;
+        }
+
+        .wifi-description {
+            margin-top: 28px;
+            color: #c8c8c8;
+            font-size: 18px;
+            line-height: 1.9;
+            word-break: keep-all;
+        }
+    }
+
+    .wifi-points {
+        margin-top: 42px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        span {
+            flex-shrink: 0;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background-color: #ffffff;
+            color: #132664;
+            font-size: 14px;
+            font-weight: 800;
+            box-shadow: 0 12px 30px rgba(31, 43, 32, 0.08);
+        }
+
+        p {
+            margin: 0;
+            color: #c8c8c8;
+            font-size: 16px;
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+    }
+
+    .wifi-visual {
+        position: relative;
+    }
+
+    .visual-card {
+        overflow: hidden;
+        width: 100%;
+        border-radius: 34px;
+        background-color: #ffffff;
+        border: 1px solid rgba(111, 127, 101, 0.16);
+        box-shadow: 0 30px 80px rgba(31, 43, 32, 0.12);
+
+        img {
+            display: block;
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .WifiSensing {
+        .wifi-inner {
+            grid-template-columns: 1fr;
+            gap: 72px;
+        }
+
+        .visual-card {
+            img {
+                height: 390px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .WifiSensing {
+        padding: 90px 0;
+
+        .wifi-inner {
+            width: 88%;
+            gap: 56px;
+        }
+
+        .wifi-text {
+            h2 {
+                font-size: 32px;
+            }
+
+            .wifi-description {
+                font-size: 16px;
+            }
+        }
+
+        .wifi-points {
+            margin-top: 34px;
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        .visual-card {
+            border-radius: 26px;
+
+            img {
+                height: 300px;
+            }
+        }
+    }
+}
