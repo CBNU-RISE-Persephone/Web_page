@@ -25,7 +25,7 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
 
     // 개별 컨텐츠 영역 공통설정
     .about-section {
-        margin-bottom: 70px;
+        margin-bottom: 250px; // 각 section 별 간격
 
         h2 {
         font-size: 1.8rem;
@@ -68,6 +68,13 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
 
         // background-color: #eef7ee;
         box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     }
 
     .text-box{

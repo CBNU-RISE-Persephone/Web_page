@@ -1,17 +1,21 @@
 import '../../styles/components/about/AboutProblem.scss'
+import AboutProblemImg from '../../Assets/Images/About/AboutProblemImg.png'
 
 function AboutProblem(){
     return(
         <section className="about-section problem-section">
+            <h2>PERSEPHONE로 해결하고자 하는 문제</h2>
+
             <div className='section-split reverse'>
 
-                <div className='media-box image-box dummy-image'>
-                    <p>임시 이미지 영역</p>
+                <div className='media-box image-box'>
+                    <img
+                        src={AboutProblemImg}
+                        alt='AboutProblemImg.png'
+                    ></img>
                 </div>
                     
                 <div className='text-box'>
-                    <h2>PERSEPHONE로 해결하고자 하는 문제</h2>
-
                     <p>
                         페르세포네는 WiFi Sensing과 AI 분석 기술을 결합하여 기존 매립형·지점 중심 구조를 
                         비접촉·구역 중심 모니터링 체계로 전환한다. 이를 통해 최소한의 인프라로 광범위한 데이터를 
