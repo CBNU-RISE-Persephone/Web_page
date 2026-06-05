@@ -1,0 +1,21 @@
+$font-color-darkgreen: #1c4312; // 기본 nabvar 색상
+
+.about-hero {
+        background: white;
+        padding: 80px 20px;
+        text-align: center;
+
+    h1 {
+        color: $font-color-darkgreen;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: 450;
+    }
+
+    p {
+        color: black;
+        font-size: 1.5rem;
+        font-weight: 800;
+        opacity: 0.9;
+    }
+}

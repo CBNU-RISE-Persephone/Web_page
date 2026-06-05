@@ -1,0 +1,28 @@
+.problem-section{
+    .problem-list{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .problem-list > div{
+        padding: 18px;
+
+        border-radius: 12px;
+        background-color: #f7faf7;
+        border: 1px solid #e5e7eb;
+    }
+
+    h3{
+        margin: 0;
+        margin-bottom: 8px;
+        font-size: 1rem;
+    }
+
+    p{
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666666;
+    }
+}

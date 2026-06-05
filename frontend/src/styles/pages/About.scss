@@ -1,37 +1,31 @@
+/*  
+    ! 수정 전 주의 !
+    본 style 파일은 About 페이지에 전역(공통)으로 적용되는 스타일 속성들에 대해서만 작성할 것.
+    개별적인 컴포넌트에 독립적으로 적용되는 속성은, about 폴더 하위의 각각의 스타일 파일들에 작성할 것.
+ */
+
+/* 색상 변수 영역 */
+$font-color-darkgreen: #1c4312; // 기본 nabvar 색상
+
+
+/* style 영역 */
+// 주석좀 잘 달아놓으라고 서민석 ㅋㅋㅋ
+
 .about-page {
     font-family: sans-serif;
     color: #333;
     line-height: 1.6;
 
-
-    .about-hero {
-        background: rgb(55, 98, 53);
-        color: #fff;
-        padding: 80px 20px;
-        text-align: center;
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-    }
-
-
+    // container (컨텐츠 영역) 전체 설정
     .about-container {
         max-width: 900px; 
         margin: 0 auto;
         padding: 40px 20px;
     }
 
-
+    // 개별 컨텐츠 영역 공통설정
     .about-section {
-        margin-bottom: 70px;
+        margin-bottom: 250px; // 각 section 별 간격
 
         h2 {
         font-size: 1.8rem;
@@ -39,6 +33,7 @@
         position: relative;
         padding-bottom: 10px;
 
+            // 제목(title) 아래에 막대기
             &::after {
                 content: '';
                 position: absolute;
@@ -51,75 +46,62 @@
         }
     }
 
+    // 좌우 분할되는 컴포넌트들 공통 적용
+    .section-split{
+        display: flex;
+        gap: 40px;
+        align-items: center;
 
-    .introduction {
-        p {
+        &.reverse{ flex-direction: row-reverse; }
+    }
+
+    // 공통 미디어, 비디오 박스 및 텍스트 박스
+    .media-box, .text-box{
+        flex: 1;
+        min-width: 0;
+    }
+
+    .media-box{
+        min-height: 320px;
+        border-radius: 18px;
+        overflow: hidden;
+
+        // background-color: #eef7ee;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .text-box{
+        p{
             font-size: 1.1rem;
-            color: #555;
-            word-break: keep-all; 
+            color: #555555;
+            word-break: keep-all; // ?
         }
     }
 
+    // 우선 비디오는 하나 예정이지만, 혹시 모를 내용 추가를 위해 공통 영역에 둠
+    .video-box{
+        aspect-ratio: 16/9;
+        min-height: auto;
+        background-color: black;
 
-    .vision {
-        .vision-box {
-        background-color: #f3f4f6;
-        padding: 30px;
-        border-radius: 12px;
-        border-left: 5px solid #13830d;
-        text-align: center;
-
-            .vision-quote {
-                font-size: 1.3rem;
-                font-weight: 700;
-                color: #005a18;
-                margin-bottom: 15px;
-            }
-
-            .vision-desc {
-                font-size: 1rem;
-                color: #666;
-                max-width: 600px;
-                margin: 0 auto;
-            }
+        iframe{
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
         }
     }
 
-
-    .features {
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-
-            .feature-card {
-                background-color: #fff;
-                padding: 25px;
-                border-radius: 8px;
-                border: 1px solid #e5e7eb;
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-                &:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-                }
-
-                h3 {
-                    font-size: 1.2rem;
-                    margin-bottom: 12px;
-                    color: #111;
-                }
-
-                p {
-                    font-size: 0.95rem;
-                    color: #666;
-                }
-            }
-        }
-    }
-
-    h3{
-        color:#0d9030
+    // 더미 이미지
+    .dummy-image {
+        background-color: pink;
     }
 }
 
