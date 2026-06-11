@@ -1,4 +1,4 @@
-// 얘는 별도 개별 css파일 없음(공통 적용)
+import '../../styles/components/about/AboutIntroduction.scss'
 
 function AboutIntroduction(){
     return(

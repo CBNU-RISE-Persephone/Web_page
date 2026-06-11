@@ -1,0 +1,9 @@
+.introduction{
+// About 페이지에서 introduction 부분의 동영상-텍스트박스 간 비중 조절
+
+.section-split{
+    .media-box{ flex: 1.1; }
+    .text-box{ flex: 0.9; }
+}
+
+}
