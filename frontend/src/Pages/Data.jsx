@@ -3,11 +3,10 @@ import '../styles/pages/Data.scss';
 
 function Data() {
     const [datasets, setDatasets] = useState([]);       
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState(null); 
     const [sampleDetail, setSampleDetail] = useState(null); 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);       
 
-    // 1. 컴포넌트 마운트 시 전체 샘플 목록 로드
     useEffect(() => {
         fetch('http://localhost:5000/api/samples')
             .then((res) => {
@@ -17,9 +16,9 @@ function Data() {
             .then((data) => {
                 setDatasets(data);
                 if (data.length > 0) {
-                    setSelectedId(data[0].id); // 첫 번째 항목 자동 선택
+                    setSelectedId(data[0].id); 
                 }
-                setLoading(false);
+                setLoading(false)
             })
             .catch((err) => {
                 console.error("샘플 목록 로드 실패:", err);
@@ -27,7 +26,6 @@ function Data() {
             });
     }, []);
 
-    // 2. 선택된 샘플이 바뀔 때마다 상세 정보(미디어 URL 포함) 로드
     useEffect(() => {
         if (!selectedId) return;
 
@@ -43,11 +41,7 @@ function Data() {
     }, [selectedId]);
 
     if (loading) {
-        return (
-            <div className="loading" style={{ padding: '50px', textAlign: 'center', fontSize: '20px' }}>
-                데이터베이스에서 샘플 목록을 불러오는 중입니다...
-            </div>
-        );
+        return <div className="loading" style={{ padding: '50px', textAlign: 'center', fontSize: '20px' }}>데이터베이스에서 샘플 목록을 불러오는 중입니다...</div>;
     }
 
     return (
@@ -61,7 +55,6 @@ function Data() {
             </section>
 
             <section className="data-layout">
-                {/* 사이드바 영역 */}
                 <aside className="dataset-panel">
                     <h2>Dataset</h2>
                     <div className="dataset-list" style={{ maxHeight: '700px', overflowY: 'auto' }}>
@@ -79,11 +72,10 @@ function Data() {
                     </div>
                 </aside>
 
-                {/* 메인 콘텐츠 영역 */}
                 <section className="data-content">
                     <div className="top-grid">
                         
-                        {/* 01. Camera Video 영역 (.mp4 재생) */}
+                        {/* 01. Camera Video 영역 (실제 플레이어 탑재) */}
                         <article className="data-card">
                             <div className="card-title">
                                 <span>01</span>
@@ -96,10 +88,9 @@ function Data() {
                                         controls 
                                         style={{ width: '100%', maxHeight: '180px', borderRadius: '4px' }}
                                         onError={(e) => {
-                                            // 실제 파일 경로에 미디어가 없을 경우 대체 텍스트 표시 보정
+                                            // 비디오 파일이 실제 static 폴더에 없을 경우 텍스트 대체
                                             e.target.style.display = 'none';
-                                            const fallback = document.getElementById('video-path-fallback');
-                                            if (fallback) fallback.style.display = 'block';
+                                            document.getElementById('video-path-fallback').style.display = 'block';
                                         }}
                                     />
                                 ) : null}
@@ -116,7 +107,7 @@ function Data() {
                             </p>
                         </article>
 
-                        {/* 02. CSI Visualization 영역 (.gif 히트맵 렌더링) */}
+                        {/* 02. CSI Visualization 영역 (실제 이미지 렌더링 탑재) */}
                         <article className="data-card">
                             <div className="card-title">
                                 <span>02</span>
@@ -129,10 +120,9 @@ function Data() {
                                         alt="CSI Heatmap"
                                         style={{ maxWidth: '100%', maxHeight: '180px', objectFit: 'contain' }}
                                         onError={(e) => {
-                                            // 실제 파일 경로에 이미지가 없을 경우 대체 텍스트 표시 보정
+                                            // 이미지 파일이 실제 static 폴더에 없을 경우 텍스트 대체
                                             e.target.style.display = 'none';
-                                            const fallback = document.getElementById('csi-path-fallback');
-                                            if (fallback) fallback.style.display = 'block';
+                                            document.getElementById('csi-path-fallback').style.display = 'block';
                                         }}
                                     />
                                 ) : null}
