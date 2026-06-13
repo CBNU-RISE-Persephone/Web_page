@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react';
 import '../styles/pages/Data.scss';
 
+const API_BASE_URL = 'https://api.demeter-persephone.cloud';
+
+function getMediaUrl(path) {
+    if (!path) return '';
+    return new URL(path, API_BASE_URL).toString();
+}
+
 function Data() {
     const [datasets, setDatasets] = useState([]);       
     const [selectedId, setSelectedId] = useState(null); 
     const [sampleDetail, setSampleDetail] = useState(null); 
     const [loading, setLoading] = useState(true);       
+    const [videoError, setVideoError] = useState(false);
+    const [heatmapError, setHeatmapError] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/samples')
+        fetch(`${API_BASE_URL}/api/samples`)
             .then((res) => {
                 if (!res.ok) throw new Error("서버 응답 오류");
                 return res.json();
@@ -29,7 +38,11 @@ function Data() {
     useEffect(() => {
         if (!selectedId) return;
 
-        fetch(`http://localhost:5000/api/samples/${selectedId}`)
+        setSampleDetail(null);
+        setVideoError(false);
+        setHeatmapError(false);
+
+        fetch(`${API_BASE_URL}/api/samples/${selectedId}`)
             .then((res) => {
                 if (!res.ok) throw new Error("상세 정보 호출 오류");
                 return res.json();
@@ -82,20 +95,21 @@ function Data() {
                                 <h2>Camera Video</h2>
                             </div>
                             <div className="video-box" style={{ background: '#1e1e1e', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '260px', padding: '15px', color: '#fff', border: '1px solid #333', borderRadius: '6px' }}>
-                                {sampleDetail?.video_url ? (
+                                {sampleDetail?.video_url && !videoError ? (
                                     <video 
-                                        src={sampleDetail.video_url} 
+                                        src={getMediaUrl(sampleDetail.video_url)}
                                         controls 
+                                        autoPlay
+                                        loop
                                         style={{ width: '100%', maxHeight: '180px', borderRadius: '4px' }}
-                                        onError={(e) => {
+                                        onError={() => {
                                             // 비디오 파일이 실제 static 폴더에 없을 경우 텍스트 대체
-                                            e.target.style.display = 'none';
-                                            document.getElementById('video-path-fallback').style.display = 'block';
+                                            setVideoError(true);
                                         }}
                                     />
                                 ) : null}
                                 
-                                <div id="video-path-fallback" style={{ width: '100%', textAlign: 'center', display: sampleDetail?.video_url ? 'none' : 'block' }}>
+                                <div id="video-path-fallback" style={{ width: '100%', textAlign: 'center', display: sampleDetail?.video_url && !videoError ? 'none' : 'block' }}>
                                     <span style={{ color: '#ffcc00', marginBottom: '5px', fontSize: '13px', display: 'block' }}>🎬 Matching Video Path</span>
                                     <p style={{ wordBreak: 'break-all', fontSize: '12px', fontFamily: 'monospace', color: '#00ffcc', margin: 0 }}>
                                         {sampleDetail ? sampleDetail.video_path : "사이드바에서 샘플을 선택해 주세요."}
@@ -114,20 +128,19 @@ function Data() {
                                 <h2>CSI Visualization</h2>
                             </div>
                             <div className="csi-box" style={{ background: '#1e1e1e', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '260px', padding: '15px', color: '#fff', border: '1px solid #333', borderRadius: '6px' }}>
-                                {sampleDetail?.heatmap_url ? (
+                                {sampleDetail?.heatmap_url && !heatmapError ? (
                                     <img 
-                                        src={sampleDetail.heatmap_url} 
+                                        src={getMediaUrl(sampleDetail.heatmap_url)}
                                         alt="CSI Heatmap"
                                         style={{ maxWidth: '100%', maxHeight: '180px', objectFit: 'contain' }}
-                                        onError={(e) => {
+                                        onError={() => {
                                             // 이미지 파일이 실제 static 폴더에 없을 경우 텍스트 대체
-                                            e.target.style.display = 'none';
-                                            document.getElementById('csi-path-fallback').style.display = 'block';
+                                            setHeatmapError(true);
                                         }}
                                     />
                                 ) : null}
 
-                                <div id="csi-path-fallback" style={{ width: '100%', textAlign: 'center', display: sampleDetail?.heatmap_url ? 'none' : 'block' }}>
+                                <div id="csi-path-fallback" style={{ width: '100%', textAlign: 'center', display: sampleDetail?.heatmap_url && !heatmapError ? 'none' : 'block' }}>
                                     <span style={{ color: '#ffcc00', marginBottom: '5px', fontSize: '13px', display: 'block' }}>📡 Matching CSI Path (.npy)</span>
                                     <p style={{ wordBreak: 'break-all', fontSize: '12px', fontFamily: 'monospace', color: '#00ffcc', margin: 0 }}>
                                         {sampleDetail ? sampleDetail.amp_npy_path : "사이드바에서 샘플을 선택해 주세요."}
