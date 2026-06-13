@@ -20,7 +20,7 @@ function ContactUs() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        fetch('http://localhost:5000/api/questions', {
+        fetch('https://api.demeter-persephone.cloud/api/questions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

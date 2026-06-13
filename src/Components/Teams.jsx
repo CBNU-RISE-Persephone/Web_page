@@ -15,11 +15,9 @@ function Teams() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/team-members')
+        fetch('https://api.demeter-persephone.cloud/api/team-members')
             .then((res) => res.json())
-            .then((data) => {
-                setTeamMembers(data);
-            });
+            .then((data) => setTeamMembers(data));
     }, []);
 
     function openGithub(url) {
