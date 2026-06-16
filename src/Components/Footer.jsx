@@ -5,12 +5,19 @@ import '../styles/components/Footer.scss';
 function Footer(){
     /** 어드민 폼? 암튼 로그인 **/
     const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
-    const [username, setUsername] = useState('');
+    const [loginUsername, setLoginUsername] = useState('');
+    const [currentUsername, setCurrentUsername] = useState(() => localStorage.getItem('adminUsername') || '');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
 
-    // 폼 열고닫기
-    const openAdminModal = () => {
+    const isLoggedIn = Boolean(currentUsername);
+
+    // 폼 열고닫기, 로그인 상태 시 formlist로 이동
+    const handleAdminButtonClick = () => {
+        if(isLoggedIn){
+            window.location.href = '/formlist';
+            return;
+        }
         setLoginError('');
         setIsAdminModalOpen(true);
     };
@@ -19,7 +26,7 @@ function Footer(){
         setLoginError('');
         setIsAdminModalOpen(false);
 
-        setUsername('');
+        setLoginUsername('');
         setPassword('');
     };
 
@@ -32,7 +39,7 @@ function Footer(){
                 headers: { 'Content-Type': 'application/json', },
                 credentials: 'include',
                 body: JSON.stringify({
-                    username,
+                    username: loginUsername,
                     password,
                 }),
             });
@@ -42,10 +49,17 @@ function Footer(){
                 return;
             }
 
-            closeAdminModal();
+            let data = null;
 
-            //임시로 페이지 연동(존재하진 않음 아직)
-            window.location.href = '/admin'; // <- 요거
+            try{ data = await response.json(); }
+            catch(error){ data = null; }
+
+            const loggedInUsername = data?.username || loginUsername;
+
+            setCurrentUsername(loggedInUsername);
+            localStorage.setItem('adminUsername', loggedInUsername);
+
+            closeAdminModal();
         }
         catch(error){ setLoginError('* 연결에 실패하였습니다.'); }
     };
@@ -60,7 +74,7 @@ function Footer(){
             </p>
 
             <div className='footer-actions'>
-                
+
                 <a href="https://github.com/CBNU-RISE-Persephone/Web_page" 
                     target="_blank" 
                     rel="noopener noreferrer" 
@@ -69,8 +83,8 @@ function Footer(){
                 GitHub
                 </a>
 
-                <button type="button" className='footer-link admin-button' onClick={openAdminModal}>
-                    Admin
+                <button type="button" className='footer-link admin-button' onClick={handleAdminButtonClick}>
+                    {isLoggedIn ? currentUsername : 'Login'}
                 </button>
 
             </div>
@@ -96,8 +110,8 @@ function Footer(){
                         <input
                             id="admin-username"
                             type='text'
-                            value={username}
-                            onChange={(event) => setUsername(event.target.value)}
+                            value={loginUsername}
+                            onChange={(event) => setLoginUsername(event.target.value)}
                             autoComplete='username'
                             required
                         ></input>
