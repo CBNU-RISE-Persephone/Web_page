@@ -34,7 +34,7 @@ function Footer(){
         event.preventDefault();
 
         try{
-            const response = await fetch('/api/admin/login',{
+            const response = await fetch('https://api.demeter-persephone.cloud/api/admin/login',{
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', },
                 credentials: 'include',
