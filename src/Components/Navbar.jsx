@@ -10,7 +10,8 @@ function Navbar(){
     const [activeSection, setActiveSection] = useState('');
     const location = useLocation();
 
-    // 다른 페이지에서 navbar의 컴포넌트를 선택할 때, 맨 위로 가는 문제 해결(아마..?)
+    // 다른 페이지에서 navbar의 컴포넌트를 선택할 때, 맨 위로 가는 문제 해결
+    // + 페이지 내에서 스크롤 효과 적용(강제 스크롤 사용)
     const navigate = useNavigate();
 
     const moveToSection = (event, sectionId) => {
@@ -71,7 +72,17 @@ function Navbar(){
     return (
         <nav>
             <div>
-                <Link to="/" className="mainLogo" onClick={() => setIsOpen(false)}>DEMETER</Link>
+                <Link to="/" className="mainLogo"
+                onClick={() => {
+                    setIsOpen(false);
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                    });
+                }}
+                >
+                    DEMETER
+                </Link> 
             </div>
 
             <button className='menuBtn' onClick={() => setIsOpen(!isOpen)}>
@@ -88,7 +99,7 @@ function Navbar(){
                 </li>
 
                 <li>
-                    <NavLink to="/about" onClick={() => setIsOpen(false)}>About</NavLink>
+                    <NavLink to="/about" onClick={() => {setIsOpen(false); window.scrollTo(0, 0)}}>About</NavLink>
                 </li>
 
                 <li>
