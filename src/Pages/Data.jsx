@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import '../styles/pages/Data.scss';
 
 const API_BASE_URL = 'https://api.demeter-persephone.cloud';
@@ -9,12 +9,17 @@ function getMediaUrl(path) {
 }
 
 function Data() {
+    const videoRef = useRef(null);
     const [datasets, setDatasets] = useState([]);       
     const [selectedId, setSelectedId] = useState(null); 
     const [sampleDetail, setSampleDetail] = useState(null); 
     const [loading, setLoading] = useState(true);       
     const [videoError, setVideoError] = useState(false);
     const [heatmapError, setHeatmapError] = useState(false);
+    const [videoReady, setVideoReady] = useState(false);
+    const [heatmapReady, setHeatmapReady] = useState(false);
+    const [syncedPlayback, setSyncedPlayback] = useState(false);
+    const [heatmapSrc, setHeatmapSrc] = useState('');
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/samples`)
@@ -41,6 +46,10 @@ function Data() {
         setSampleDetail(null);
         setVideoError(false);
         setHeatmapError(false);
+        setVideoReady(false);
+        setHeatmapReady(false);
+        setSyncedPlayback(false);
+        setHeatmapSrc('');
 
         fetch(`${API_BASE_URL}/api/samples/${selectedId}`)
             .then((res) => {
@@ -52,6 +61,44 @@ function Data() {
             })
             .catch((err) => console.error("상세 정보 로드 실패:", err));
     }, [selectedId]);
+
+    useEffect(() => {
+        if (!sampleDetail?.heatmap_url) return;
+
+        const baseHeatmapUrl = getMediaUrl(sampleDetail.heatmap_url);
+        const syncHeatmapUrl = `${baseHeatmapUrl}${baseHeatmapUrl.includes('?') ? '&' : '?'}sync=${Date.now()}`;
+        const image = new Image();
+
+        image.onload = () => {
+            setHeatmapSrc(syncHeatmapUrl);
+            setHeatmapReady(true);
+        };
+        image.onerror = () => {
+            setHeatmapError(true);
+            setHeatmapReady(false);
+        };
+        image.src = syncHeatmapUrl;
+
+        return () => {
+            image.onload = null;
+            image.onerror = null;
+        };
+    }, [sampleDetail]);
+
+    useEffect(() => {
+        if (!videoReady || !heatmapReady || !videoRef.current) return;
+
+        const video = videoRef.current;
+        video.pause();
+        video.currentTime = 0;
+        setSyncedPlayback(true);
+
+        requestAnimationFrame(() => {
+            video.play().catch((err) => {
+                console.error("동기화 재생 시작 실패:", err);
+            });
+        });
+    }, [videoReady, heatmapReady]);
 
     if (loading) {
         return <div className="loading" style={{ padding: '50px', textAlign: 'center', fontSize: '20px' }}>데이터베이스에서 샘플 목록을 불러오는 중입니다...</div>;
@@ -94,19 +141,32 @@ function Data() {
                                 <span>01</span>
                                 <h2>Camera Video</h2>
                             </div>
-                            <div className="video-box" style={{ background: '#1e1e1e', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '260px', padding: '15px', color: '#fff', border: '1px solid #333', borderRadius: '6px' }}>
+                            <div className="video-box" style={{ position: 'relative', background: '#1e1e1e', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '260px', padding: '15px', color: '#fff', border: '1px solid #333', borderRadius: '6px' }}>
                                 {sampleDetail?.video_url && !videoError ? (
                                     <video 
+                                        ref={videoRef}
                                         src={getMediaUrl(sampleDetail.video_url)}
-                                        autoPlay
                                         loop
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+                                        muted
+                                        playsInline
+                                        preload="auto"
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px', visibility: syncedPlayback ? 'visible' : 'hidden' }}
+                                        onCanPlayThrough={() => {
+                                            setVideoReady(true);
+                                        }}
+                                        onLoadedData={() => {
+                                            setVideoReady(true);
+                                        }}
                                         onError={() => {
                                             setVideoError(true);
                                         }}
                                     />
                                 ) : null}
                                 
+                                {sampleDetail?.video_url && sampleDetail?.heatmap_url && !videoError && !heatmapError && !syncedPlayback ? (
+                                    <span style={{ position: 'absolute', color: '#ffcc00', fontSize: '13px' }}>동기화 준비 중...</span>
+                                ) : null}
+
                                 <div id="video-path-fallback" style={{ width: '100%', textAlign: 'center', display: sampleDetail?.video_url && !videoError ? 'none' : 'block' }}>
                                     <span style={{ color: '#ffcc00', marginBottom: '5px', fontSize: '13px', display: 'block' }}>🎬 Matching Video Path</span>
                                     <p style={{ wordBreak: 'break-all', fontSize: '12px', fontFamily: 'monospace', color: '#00ffcc', margin: 0 }}>
@@ -125,16 +185,20 @@ function Data() {
                                 <span>02</span>
                                 <h2>CSI Visualization</h2>
                             </div>
-                            <div className="csi-box" style={{ background: '#1e1e1e', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '260px', padding: '15px', color: '#fff', border: '1px solid #333', borderRadius: '6px' }}>
-                                {sampleDetail?.heatmap_url && !heatmapError ? (
+                            <div className="csi-box" style={{ position: 'relative', background: '#1e1e1e', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '260px', padding: '15px', color: '#fff', border: '1px solid #333', borderRadius: '6px' }}>
+                                {sampleDetail?.heatmap_url && heatmapSrc && !heatmapError ? (
                                     <img 
-                                        src={getMediaUrl(sampleDetail.heatmap_url)}
+                                        src={heatmapSrc}
                                         alt="CSI Heatmap"
-                                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain', visibility: syncedPlayback ? 'visible' : 'hidden' }}
                                         onError={() => {
                                             setHeatmapError(true);
                                         }}
                                     />
+                                ) : null}
+
+                                {sampleDetail?.video_url && sampleDetail?.heatmap_url && !videoError && !heatmapError && !syncedPlayback ? (
+                                    <span style={{ position: 'absolute', color: '#ffcc00', fontSize: '13px' }}>동기화 준비 중...</span>
                                 ) : null}
 
                                 <div id="csi-path-fallback" style={{ width: '100%', textAlign: 'center', display: sampleDetail?.heatmap_url && !heatmapError ? 'none' : 'block' }}>
