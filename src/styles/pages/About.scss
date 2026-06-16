@@ -13,25 +13,28 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
 
 .about-page {
     font-family: sans-serif;
-    color: #333;
+    color: #1f2a20;
     line-height: 1.6;
+    min-height: 100vh;
+    background: #f4f8f2;
 
     // container (컨텐츠 영역) 전체 설정
     .about-container {
-        max-width: 900px; 
+        max-width: 1180px; 
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 52px 8% 80px;
     }
 
     // 개별 컨텐츠 영역 공통설정
     .about-section {
-        margin-bottom: 250px; // 각 section 별 간격
+        margin-bottom: 72px; // 각 section 별 간격
 
         h2 {
-        font-size: 1.8rem;
-        margin-bottom: 25px;
-        position: relative;
-        padding-bottom: 10px;
+            font-size: 1.75rem;
+            margin: 0 0 24px;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 800;
 
             // 제목(title) 아래에 막대기
             &::after {
@@ -39,17 +42,22 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                width: 40px;
+                width: 44px;
                 height: 3px;
-                background-color: #11cb2a;
+                border-radius: 999px;
+                background-color: #5d9360;
             }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 
     // 좌우 분할되는 컴포넌트들 공통 적용
     .section-split{
         display: flex;
-        gap: 40px;
+        gap: 28px;
         align-items: center;
 
         &.reverse{ flex-direction: row-reverse; }
@@ -63,11 +71,10 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
 
     .media-box{
         min-height: 320px;
-        border-radius: 18px;
+        border: 1px solid #dce7d8;
+        border-radius: 8px;
         overflow: hidden;
-
-        // background-color: #eef7ee;
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+        background-color: #ffffff;
 
         img{
             display: block;
@@ -78,10 +85,21 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
     }
 
     .text-box{
+        padding: 24px;
+        border: 1px solid #dce7d8;
+        border-radius: 8px;
+        background: #ffffff;
+
         p{
-            font-size: 1.1rem;
-            color: #555555;
+            margin: 0 0 14px;
+            font-size: 1rem;
+            color: #5f6f62;
+            line-height: 1.8;
             word-break: keep-all; // ?
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -89,7 +107,7 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
     .video-box{
         aspect-ratio: 16/9;
         min-height: auto;
-        background-color: black;
+        background-color: #1e1e1e;
 
         iframe{
             width: 100%;
@@ -102,6 +120,20 @@ $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
     // 더미 이미지
     .dummy-image {
         background-color: pink;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-page {
+        .about-container {
+            padding: 40px 5% 64px;
+        }
+
+        .section-split,
+        .section-split.reverse {
+            flex-direction: column;
+            align-items: stretch;
+        }
     }
 }
 

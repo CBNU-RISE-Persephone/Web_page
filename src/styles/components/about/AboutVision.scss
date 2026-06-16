@@ -1,37 +1,39 @@
 .vision {
     .vision-box {
         width: 100%;
-
-        background-color: #f3f4f6;
-        padding: 44px 48px;
-        border-radius: 16px;
-        border-left: 5px solid #13830d;
+        padding: 34px 38px;
+        border: 1px solid #dce7d8;
+        border-left: 4px solid #5d9360;
+        border-radius: 8px;
+        background: #ffffff;
         text-align: left; // 이건 좀 바꿔가면서 볼 듯
-
-        background: linear-gradient(135deg, #f3f8f3, #f7f8f4);
 
         .vision-quote {
             display: block;
             width: 100%;
-
-            margin: 0 0 28px;
+            margin: 0 0 18px;
             line-height: 1.5;
-
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #005a18;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #2f6335;
         }
 
         .vision-desc {
             display: block;
             width: 100%;
-
             font-size: 1rem;
-            color: #666;
-            max-width: 760px;
-            line-height: 1.85;
-
+            color: #5f6f62;
+            max-width: 820px;
+            line-height: 1.8;
             margin: 0;
+        }
+    }
+}
+
+@media (max-width: 760px) {
+    .vision {
+        .vision-box {
+            padding: 26px 24px;
         }
     }
 }

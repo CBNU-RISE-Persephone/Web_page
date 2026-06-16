@@ -1,3 +1,5 @@
+import '../../styles/components/about/AboutFeature.scss'
+
 function AboutFeature(){
     return(
         <section className="about-section features">

@@ -1,21 +1,39 @@
 $font-color-darkgreen: #1c4312; // 기본 nabvar 색상
 
 .about-hero {
-        background: white;
-        padding: 80px 20px;
-        text-align: center;
+    padding: 96px 8% 72px;
+    background: #ffffff;
+    border-bottom: 1px solid #dce7d8;
 
     h1 {
-        color: $font-color-darkgreen;
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        font-weight: 450;
+        display: inline-block;
+        margin: 0 0 14px;
+        padding: 4px 10px;
+        border-radius: 14px;
+        background: #dcebd7;
+        color: #3c6b3f;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0;
     }
 
     p {
-        color: black;
-        font-size: 1.5rem;
+        max-width: 780px;
+        margin: 0;
+        color: #1f2a20;
+        font-size: 2.2rem;
+        line-height: 1.35;
         font-weight: 800;
-        opacity: 0.9;
+        word-break: keep-all;
+    }
+}
+
+@media (max-width: 760px) {
+    .about-hero {
+        padding: 84px 5% 52px;
+
+        p {
+            font-size: 1.75rem;
+        }
     }
 }
