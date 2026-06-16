@@ -85,10 +85,10 @@ function Data() {
                     </div>
                 </aside>
 
-                <section className="data-content">
+                <section className="data-content"> 
                     <div className="top-grid">
                         
-                        {/* 01. Camera Video 영역 (실제 플레이어 탑재) */}
+                        
                         <article className="data-card">
                             <div className="card-title">
                                 <span>01</span>
@@ -98,12 +98,10 @@ function Data() {
                                 {sampleDetail?.video_url && !videoError ? (
                                     <video 
                                         src={getMediaUrl(sampleDetail.video_url)}
-                                        controls 
                                         autoPlay
                                         loop
-                                        style={{ width: '100%', maxHeight: '180px', borderRadius: '4px' }}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
                                         onError={() => {
-                                            // 비디오 파일이 실제 static 폴더에 없을 경우 텍스트 대체
                                             setVideoError(true);
                                         }}
                                     />
@@ -121,7 +119,7 @@ function Data() {
                             </p>
                         </article>
 
-                        {/* 02. CSI Visualization 영역 (실제 이미지 렌더링 탑재) */}
+
                         <article className="data-card">
                             <div className="card-title">
                                 <span>02</span>
@@ -132,9 +130,8 @@ function Data() {
                                     <img 
                                         src={getMediaUrl(sampleDetail.heatmap_url)}
                                         alt="CSI Heatmap"
-                                        style={{ maxWidth: '100%', maxHeight: '180px', objectFit: 'contain' }}
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                         onError={() => {
-                                            // 이미지 파일이 실제 static 폴더에 없을 경우 텍스트 대체
                                             setHeatmapError(true);
                                         }}
                                     />
@@ -153,20 +150,32 @@ function Data() {
                         </article>
                     </div>
 
-                    {/* 03. 데이터 정보 요약 */}
+                    
+
                     <article className="data-card summary-card" style={{ marginTop: '20px' }}>
-                        <h2>선택된 샘플 메타데이터 요약</h2>
-                        {sampleDetail ? (
-                            <div className="metadata-summary-content" style={{ lineHeight: '2.0', fontSize: '14px', padding: '10px' }}>
-                                🔹 <strong>현재 Target ID:</strong> <span style={{ color: '#007bff', fontWeight: 'bold' }}>{sampleDetail.sample_id}</span> <br />
-                                🏢 <strong>실험 환경 (Environment):</strong> {sampleDetail.environment} <br />
-                                📡 <strong>주파수 대역 (WiFi Band):</strong> {sampleDetail.wifi_band} <br />
-                                👥 <strong>측정 인원수 (Number of Users):</strong> {sampleDetail.number_of_users} 명 <br />
-                                🏃‍♂️ <strong>User 1 행동:</strong> {sampleDetail.user_1_activity} | 🏃‍♀️ <strong>User 2 행동:</strong> {sampleDetail.user_2_activity}
-                            </div>
-                        ) : (
-                            <p>데이터를 로딩 중이거나 선택된 내역이 없습니다.</p>
-                        )}
+                        <h2>WiMANS 데이터 해석 가이드</h2>
+                        <p>
+                            좌측의 Camera Video는 실제 카메라로 촬영된 관찰 장면이며, 우측의 CSI Visualization은
+                            같은 구간에서 Wi-Fi 신호가 어떻게 변화했는지를 시각화한 결과입니다.
+                        </p>
+                        <p>
+                            CSI 화면에서 색의 변화는 신호 진폭의 변화를 의미합니다. 영상 속 움직임이나 환경 변화가 커질수록
+                            Heatmap에서도 시간에 따른 패턴 변화가 더 뚜렷하게 나타나므로, 두 데이터를 함께 비교하며 해석할 수 있습니다.
+                        </p>
+                        <div className="csi-legend" aria-label="CSI amplitude color legend">
+                            <span>낮은 진폭</span>
+                            <div className="legend-bar" />
+                            <span>높은 진폭</span>
+                        </div>
+                        <br />
+                        <p>
+                            영상에서 움직임이 많이 감지될수록 Wi-Fi 신호에도 더 큰 변화가 발생하며,
+                            CSI 시각화 화면에서는 색 패턴이 흔들리거나 급격히 바뀌는 형태로 나타납니다.
+                        </p>
+                        <p>
+                            현재 화면은 WiMANS 샘플 데이터를 기반으로 구성되어 있으며, 이후 PERSEPHONE 자체 실험이 진행되면
+                            실제 수집 데이터에 맞춰 영상과 CSI 시각화 결과를 업데이트할 예정입니다.
+                        </p>
                     </article>
                 </section>
             </section>

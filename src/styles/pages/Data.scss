@@ -189,10 +189,32 @@
     }
 
     p {
-        margin: 0;
+        margin: 0 0 10px;
         color: #5f6f62;
         font-size: 14px;
         line-height: 1.7;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .csi-legend {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 360px;
+        margin: 14px 0 10px;
+        color: #4f5d50;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .legend-bar {
+        flex: 1;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #2149d8 0%, #18b7d5 30%, #4fc36a 52%, #ffd84a 74%, #d7191c 100%);
     }
 }
 
