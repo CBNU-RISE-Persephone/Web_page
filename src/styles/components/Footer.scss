@@ -10,24 +10,22 @@
         margin: 0 auto;
         padding: 0 20px;
     
-        display: flex;
-        flex-direction: column; 
+        display: grid;
         align-items: center;
-        gap: 10px;
-
-        @media (min-width: 768px) {
-            flex-direction: row;  
-            justify-content: space-between; 
-        }
+        grid-template-columns: 1fr 1fr 1fr; // 3분할
     }
 
     .footer-logo {
+        justify-self: start; //3분할(앞)
+
         font-weight: bold;
         color: #ffffff;
         font-size: 0.95rem;
     }
 
     .copyright {
+        justify-self: center; //3분할(중앙)
+
         font-size: 0.85rem;
         margin: 0;
     }
@@ -42,4 +40,122 @@
             color: #a8a8a8;
         }
     }
+
+    .footer-actions{
+        a{ text-decoration: none; } // 밑줄 삭제 
+        justify-self: end; // 3분할(끝)
+
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        gap: 14px;
+    }
+
+    .footer-link{
+        font-size: 0.85rem;
+        color: #ffffff;
+        font-weight: 500;
+        transition: color 0.2s ease;
+        text-decoration: none;
+    }
+
+    .footer-link:hover{ color: #a8a8a8; }
+
+    .admin-button{
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    .admin-modal-backdrop{
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.55);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .admin-modal{
+        position: relative;
+        width: min(100%, 360px);
+        background-color: #ffffff;
+        color: #222222;
+        border-radius: 14px;
+        padding: 28px 24px 24px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+
+        h2{
+            margin: 0 0 20px;
+            font-size: 1.25rem;
+            text-align: center;
+        }
+    }
+
+    .admin-modal-close{
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        border: 0;
+        background: none;
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #555555;
+    }
+
+    .admin-login-form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label{
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        input{
+            height: 38px;
+            padding: 0 10px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        input:focus{
+            outline: none;
+            border-color: #4a4a4a;
+        }
+    }
+
+    .admin-login-error{
+        margin: 2px 0 0;
+        color: #d93025;
+        font-size: 0.8rem;
+    }
+
+    .admin-login-error{
+        margin: 2px 0 0;
+        color: #d93025;
+        font-size: 0.8rem;
+    }
+
+    .admin-login-submit{
+        height: 40px;
+        margin-top: 8px;
+        border: 0;
+        border-radius: 8px;
+        background-color: #4a4a4a;
+        color: #ffffff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .admin-login-submit:hover{ background-color: #333333; }
 }
