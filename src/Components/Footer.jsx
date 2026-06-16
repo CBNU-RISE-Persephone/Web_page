@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../styles/components/Footer.scss';
 
+// PR이 안떠서 커밋을 하나 더 만들기 위한 주석
 
 function Footer(){
     /** 어드민 폼? 암튼 로그인 **/
@@ -34,7 +35,7 @@ function Footer(){
         event.preventDefault();
 
         try{
-            const response = await fetch('/api/admin/login',{
+            const response = await fetch('https://api.demeter-persephone.cloud/api/admin/login',{
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', },
                 credentials: 'include',
