@@ -6,6 +6,7 @@ import Teams from './Components/Teams'
 import About from './Pages/About'
 import Data from './Pages/Data'
 import ContactUs from './Components/ContactUs'
+import Formlist from './Pages/Formlist';
 import './styles/App.scss';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/data" element={<Data />} />
+        <Route path='/formlist' element={<Formlist />} />
       </Routes>
 
       <Footer />
