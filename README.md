@@ -1,4 +1,4 @@
-# CBNU-RISE-Persephone Backend
+# CBNU-RISE-Persephone Frontend
 
 ## Overview
 
